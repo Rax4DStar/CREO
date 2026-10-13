@@ -1,0 +1,27 @@
+FROM --platform=linux/amd64 ubuntu:26.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install GCC 15 for experimental C++26 support and x86-64 assembly tools.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        gcc-15 \
+        g++-15 \
+        cmake \
+        gdb \
+        nasm \
+        sudo \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Make GCC 15 the compiler selected by CMake and other build tools.
+ENV CC=gcc-15 \
+    CXX=g++-15
+
+# Create a non-root development user.
+RUN useradd --create-home --shell /bin/bash dev \
+    && echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev \
+    && chmod 0440 /etc/sudoers.d/dev
+
+USER dev
+WORKDIR /home/dev
