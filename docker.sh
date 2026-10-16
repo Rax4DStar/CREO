@@ -2,9 +2,9 @@
 set -euo pipefail
 
 IMAGE_NAME="dev-env-gsisi"
-CONTAINER_NAME="dev-env-gsisi-container"
+CONTAINER_NAME="dev-env-creo-container"
 CONTAINER_ENTRY="/bin/bash"
-WORK_DIR="/home/dev/gsisi"
+WORK_DIR="/home/dev/creo"
 DOCKERFILE="Docker File"
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 

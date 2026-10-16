@@ -11,13 +11,13 @@ file(GLOB FRONTEND_SOURCES CONFIGURE_DEPENDS
 )
 list(FILTER FRONTEND_SOURCES EXCLUDE REGEX "/main\\.cpp$")
 
-add_library(gsisi_frontend ${FRONTEND_SOURCES})
-target_include_directories(gsisi_frontend
+add_library(creo_frontend ${FRONTEND_SOURCES})
+target_include_directories(creo_frontend
     PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-add_executable(si_compiler
+add_executable(creo
     "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp"
 )
-target_link_libraries(si_compiler PRIVATE gsisi_frontend)
+target_link_libraries(creo PRIVATE creo_frontend)
